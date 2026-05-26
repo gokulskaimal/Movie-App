@@ -1,0 +1,78 @@
+{
+  "550e8400-e29b-41d4-a716-446655440000": [
+    {
+      "imdbID": "tt0372784",
+      "Title": "Batman Begins",
+      "Year": "2005",
+      "Poster": "https://example.com/poster.jpg",
+      "Type": "movie"
+    }
+  ],
+  "2897a406-eebf-4dcc-9a5b-9bed06a946b6": [
+    {
+      "Title": "Batman Begins",
+      "Year": "2005",
+      "imdbID": "tt0372784",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzA2NDQzZDEtNDU5Ni00YTlkLTg2OWEtYmQwM2Y1YTBjMjFjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    },
+    {
+      "Title": "The Batman",
+      "Year": "2022",
+      "imdbID": "tt1877830",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMmU5NGJlMzAtMGNmOC00YjJjLTgyMzUtNjAyYmE4Njg5YWMyXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    },
+    {
+      "Title": "You Are So Not Invited to My Bat Mitzvah",
+      "Year": "2023",
+      "imdbID": "tt21276878",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZmU0NjhkYzctZDBhNi00NzFjLWFkMjAtZGY0MmM3YzU3ZTgyXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Bat*21",
+      "Year": "1988",
+      "imdbID": "tt0094712",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BODliNTk0NDItZTdkNS00ZjRkLTk5MjItYmQxNmYyZTBiNjI0XkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "Title": "The Bat",
+      "Year": "1959",
+      "imdbID": "tt0052602",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNjgwMDc3ZTUtMjNiZi00Y2RhLTgzNDItZjZmYjdkZjE2MmVmXkEyXkFqcGc@._V1_SX300.jpg"
+    }
+  ],
+  "0d1d258d-6915-458f-adfa-e7b673c692fe": [
+    {
+      "Title": "Batman Begins",
+      "Year": "2005",
+      "imdbID": "tt0372784",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzA2NDQzZDEtNDU5Ni00YTlkLTg2OWEtYmQwM2Y1YTBjMjFjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    },
+    {
+      "Title": "Batman Forever",
+      "Year": "1995",
+      "imdbID": "tt0112462",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTUyNjJhZWItMTZkNS00NDc4LTllNjUtYTg3NjczMzA5ZTViXkEyXkFqcGc@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman v Superman: Dawn of Justice",
+      "Year": "2016",
+      "imdbID": "tt2975590",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZTJkYjdmYjYtOGMyNC00ZGU1LThkY2ItYTc1OTVlMmE2YWY1XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg"
+    },
+    {
+      "Title": "Superman",
+      "Year": "2025",
+      "imdbID": "tt5950044",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOGMwZGJiM2EtMzEwZC00YTYzLWIxNzYtMmJmZWNlZjgxZTMwXkEyXkFqcGc@._V1_QL75_UY562_CR35,0,380,562_.jpg"
+    }
+  ]
+}
