@@ -7,7 +7,7 @@ import { errorMiddleware } from "./middlewares/error.middleware"
 import { MESSAGES } from "./constants/messages"
 
 export const app = express()
-
+app.set("trust proxy", 1);
 app.use(
   cors({
     origin: [
