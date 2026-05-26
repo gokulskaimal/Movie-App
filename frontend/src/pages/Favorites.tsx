@@ -21,7 +21,7 @@ import {
 import type {
   Movie
 }
-from "../types/moive";
+from "../types/movie";
 
 function Favorites() {
 

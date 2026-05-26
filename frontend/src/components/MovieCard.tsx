@@ -1,5 +1,5 @@
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
-import type { Movie } from '../types/moive'
+import type { Movie } from '../types/movie'
 
 interface Props {
     movie: Movie

@@ -7,7 +7,7 @@ import {
   favoriteService
 } from "../../services/favorite.service";
 
-import type { Movie } from "../../types/moive";
+import type { Movie } from "../../types/movie";
 
 interface FavoriteState {
   favorites: Movie[];

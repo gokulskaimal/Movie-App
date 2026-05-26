@@ -1,6 +1,6 @@
 import api from "../api/axios";
 import { getGuestId } from "../hooks/useGuestId";
-import type { Movie } from "../types/moive";
+import type { Movie } from "../types/movie";
 
 export const favoriteService = {
     async getFavorites(){

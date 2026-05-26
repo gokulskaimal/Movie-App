@@ -32,7 +32,7 @@ import {
 
 import { addFavorite, removeFavorite, fetchFavorites } from "../store/slices/favorite.slice";
 
-import type { Movie } from "../types/moive";
+import type { Movie } from "../types/movie";
 
 
 function Home() {
