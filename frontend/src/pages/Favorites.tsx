@@ -56,41 +56,70 @@ function Favorites() {
     };
 
   return (
+  <div
+    style={{
+      maxWidth: "1400px",
+      margin: "0 auto",
+      padding: "40px 24px"
+    }}
+  >
+    <Navbar />
+
     <div
       style={{
-        maxWidth:
-          "1200px",
-
-        margin:
-          "40px auto",
-
-        padding:
-          "20px"
+        marginBottom: "30px"
       }}
     >
-      <Navbar />
-
-      <h1>
-        Your Favorites
+      <h1
+        style={{
+          fontSize: "42px",
+          fontWeight: "800",
+          color: "#111827",
+          marginBottom: "8px"
+        }}
+      >
+        ❤️ Your Favorites
       </h1>
 
-      {!favorites.length && (
-        <p>
-          No favorites added
-          yet.
-        </p>
-      )}
+      <p
+        style={{
+          color: "#6b7280",
+          fontSize: "16px"
+        }}
+      >
+        All the movies you saved
+      </p>
+    </div>
 
+    {favorites.length === 0 ? (
       <div
         style={{
-          display:
-            "grid",
+          textAlign: "center",
+          padding: "80px 20px",
+          color: "#6b7280"
+        }}
+      >
+        <h2>
+          ❤️ No favorites yet
+        </h2>
+
+        <p>
+          Start adding movies
+          to your favorites list
+        </p>
+      </div>
+    ) : (
+      <div
+        style={{
+          display: "grid",
 
           gridTemplateColumns:
-            "repeat(auto-fill, minmax(220px, 1fr))",
+            "repeat(auto-fill, minmax(240px, 260px))",
 
-          gap:
-            "20px"
+          justifyContent:
+            "center",
+
+          gap: "20px"
         }}
       >
         {favorites.map(
@@ -115,8 +144,9 @@ function Favorites() {
           )
         )}
       </div>
-    </div>
-  );
+    )}
+  </div>
+);
 }
 
 export default

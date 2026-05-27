@@ -134,20 +134,48 @@ function Home() {
     return (
         <div
             style={{
-                maxWidth:
-                    "1200px",
-
-                margin:
-                    "40px auto",
-
-                padding:
-                    "20px"
+                maxWidth: "1400px",
+                margin: "0 auto",
+                padding: "40px 24px"
             }}
         >
             <Navbar />
-            <h1>
-                Movie Search
-            </h1>
+            <div
+                style={{
+                    marginBottom:
+                        "28px"
+                }}
+            >
+                <h1
+                    style={{
+                        fontSize:
+                            "42px",
+
+                        fontWeight:
+                            "800",
+
+                        color:
+                            "#111827",
+
+                        marginBottom:
+                            "8px"
+                    }}
+                >
+                    🎬 Discover Movies
+                </h1>
+
+                <p
+                    style={{
+                        color:
+                            "#6b7280",
+
+                        fontSize:
+                            "16px"
+                    }}
+                >
+                    Search and save your favorite movies
+                </p>
+            </div>
 
             <SearchBar
                 value={query}
@@ -156,57 +184,96 @@ function Home() {
                 }
             />
 
-            {loading && (
+            {loading ? (
                 <Loader />
+            ) : movies.length > 0 ? (
+                <>
+                    <div
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns:
+                                "repeat(auto-fill, minmax(240px, 260px))",
+                            justifyContent:
+                                "center",
+                            gap: "20px"
+                        }}
+                    >
+                        {movies.map(
+                            (movie) => {
+
+                                const isFavorite =
+                                    favorites.some(
+                                        (fav) =>
+                                            fav.imdbID ===
+                                            movie.imdbID
+                                    );
+
+                                return (
+                                    <MovieCard
+                                        key={
+                                            movie.imdbID
+                                        }
+
+                                        movie={
+                                            movie
+                                        }
+
+                                        isFavorite={
+                                            isFavorite
+                                        }
+
+                                        onToggleFavorite={
+                                            handleFavorite
+                                        }
+                                    />
+                                );
+                            }
+                        )}
+                    </div>
+
+                    <Pagination
+                        currentPage={
+                            currentPage
+                        }
+                        totalPages={
+                            Math.ceil(
+                                totalResults / 10
+                            )
+                        }
+                        onPageChange={
+                            handlePageChange
+                        }
+                    />
+                </>
+            ) : (
+                query.trim() && (
+                    <div
+                        style={{
+                            textAlign: "center",
+                            padding: "100px 20px",
+                            color: "#6b7280"
+                        }}
+                    >
+                        <h2
+                            style={{
+                                fontSize: "32px",
+                                marginBottom: "12px"
+                            }}
+                        >
+                            🎬 No movies found
+                        </h2>
+
+                        <p
+                            style={{
+                                fontSize: "18px"
+                            }}
+                        >
+                            Try searching another movie
+                        </p>
+                    </div>
+                )
             )}
 
-            <div
-                style={{
-                    display:
-                        "grid",
-
-                    gridTemplateColumns:
-                        "repeat(auto-fill, minmax(220px, 1fr))",
-
-                    gap:
-                        "20px"
-                }}
-            >
-                {movies.map(
-                    (movie) => {
-
-                        const isFavorite =
-                            favorites.some(
-                                (fav) =>
-                                    fav.imdbID ===
-                                    movie.imdbID
-                            );
-
-                        return (
-                            <MovieCard
-                                key={
-                                    movie.imdbID
-                                }
-
-                                movie={
-                                    movie
-                                }
-
-                                isFavorite={
-                                    isFavorite
-                                }
-
-                                onToggleFavorite={
-                                    handleFavorite
-                                }
-                            />
-                        );
-                    }
-                )}
-            </div>
-            {movies.length > 0 && (
-                <Pagination currentPage={currentPage} totalPages={Math.ceil(totalResults / 10)} onPageChange={handlePageChange} />
-            )}
         </div>
     );
 }
