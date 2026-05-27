@@ -10,11 +10,41 @@ export const app = express()
 app.set("trust proxy", 1);
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      process.env.FRONTEND_URL || ""
-    ],
-    credentials: true
+    origin: (
+      origin,
+      callback
+    ) => {
+
+      const allowedOrigins = [
+        "http://localhost:5173",
+        process.env
+          .FRONTEND_URL
+      ];
+
+      if (
+        !origin ||
+        allowedOrigins.includes(
+          origin
+        )
+      ) {
+
+        callback(
+          null,
+          true
+        );
+
+      } else {
+
+        callback(
+          new Error(
+            "Not allowed by CORS"
+          )
+        );
+      }
+    },
+
+    credentials:
+      true
   })
 );
 
