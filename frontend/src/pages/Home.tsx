@@ -2,6 +2,12 @@ import {
     useEffect,
     useState
 } from "react";
+
+import {
+    toast
+
+} from "react-hot-toast";
+
 import Pagination
     from "../components/Pagination";
 
@@ -99,33 +105,59 @@ function Home() {
     ]);
 
     const handleFavorite =
-        async (
-            movie: Movie
-        ) => {
+async (
+  movie: Movie
+) => {
 
-            const favoriteIds = new Set(favorites.map((fav) => fav.imdbID))
-            const isFavorite =
-                favoriteIds.has(movie.imdbID)
+  const favoriteIds =
+    new Set(
+      favorites.map(
+        (fav) =>
+          fav.imdbID
+      )
+    );
 
-            if (
-                isFavorite
-            ) {
+  const isFavorite =
+    favoriteIds.has(
+      movie.imdbID
+    );
 
-                await dispatch(
-                    removeFavorite(
-                        movie.imdbID
-                    )
-                );
+  try {
 
-            } else {
+    if (
+      isFavorite
+    ) {
 
-                await dispatch(
-                    addFavorite(
-                        movie
-                    )
-                );
-            }
-        }
+      await dispatch(
+        removeFavorite(
+          movie.imdbID
+        )
+      );
+
+      toast.success(
+        `${movie.Title} removed from favorites`
+      );
+
+    } else {
+
+      await dispatch(
+        addFavorite(
+          movie
+        )
+      );
+
+      toast.success(
+        `${movie.Title} added to favorites`
+      );
+    }
+
+  } catch {
+
+    toast.error(
+      "Something went wrong"
+    );
+  }
+};
 
     const handlePageChange = (page: number) => {
         dispatch(searchMovies({ query: savedQuery, page }))

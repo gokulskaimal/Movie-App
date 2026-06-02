@@ -1,5 +1,5 @@
 import { SearchMoiveDTO } from "../dto/search-movie.dto";
-import { IOMDBRepository , MovieSearchResult} from "../repositories/interfaces/IOMDBRepository";
+import { IOMDBRepository , MovieSearchResult , MovieDetails} from "../repositories/interfaces/IOMDBRepository";
 
 export class MovieService {
     constructor(private _movieRepo : IOMDBRepository){}
@@ -8,6 +8,9 @@ export class MovieService {
         const {query , page = 1 } = payload;
 
         return this._movieRepo.searchMovies(query , page)
+    }
+    async getMovieDetails(imdbID : string) : Promise<MovieDetails>{
+        return this._movieRepo.getMovieDetails(imdbID)
     }
 }
 

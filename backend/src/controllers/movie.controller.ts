@@ -12,4 +12,13 @@ export class MovieController {
             next(err)
         }
     }
+
+    getMoviesDetails = async(req : Request , res : Response , next : NextFunction) =>{
+        try{
+            const movie = await movieService.getMovieDetails(req.params.imdbID as string)
+            return successResponse(res , movie , "Movie details Fetched")
+        }catch(err){
+            next(err)
+        }
+    }
 }

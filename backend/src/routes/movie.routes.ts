@@ -8,5 +8,6 @@ const router = Router()
 const movieController = new MovieController()
 
 router.get('/search' , validate(searchMovieSchema) , movieController.searchMovies)
+router.get('/:imdbID' , movieController.getMoviesDetails)
 
 export default router
