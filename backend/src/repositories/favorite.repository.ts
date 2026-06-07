@@ -1,121 +1,61 @@
 import { FavouriteMovieDTO } from "../dto/favorite-movie.dto";
 import { IFavoriteRepository } from "./interfaces/IFavoriteRepository";
-import {
-  readFavoritesFile,
-  writeFavoritesFile
-} from "../utils/file-storage";
+import { getDb } from "../config/db";
 
 export class FavoritesRepository
-implements IFavoriteRepository {
+  implements IFavoriteRepository {
 
   async getFavorites(
     guestId: string
   ): Promise<FavouriteMovieDTO[]> {
 
-    const favorites =
-      await readFavoritesFile();
+    const db = await getDb()
 
-    return (
-      favorites[
-        guestId
-      ] || []
-    );
+    const favorites = await db.all<FavouriteMovieDTO[]>(
+      `SELECT imdbID , Title , Year , Poster , Type from favorites where guestId = ?`,
+      [guestId]
+    )
+
+    return favorites || []
   }
 
-  async isFavorite(guestId : string , imdbID : string) : Promise<boolean>{
-    const favorites = await this.getFavorites(guestId)
-
-    return favorites.some(movie => movie.imdbID === imdbID)
+  async isFavorite(guestId: string, imdbID: string): Promise<boolean> {
+    const db = await getDb()
+    const result = await db.get(
+      `SELECT 1 FROM favorites WHERE guestId = ? AND imdbID = ?`,
+      [guestId, imdbID]
+    )
+    return !!result;
   }
   async addFavorite(
     guestId: string,
     movie: FavouriteMovieDTO
   ): Promise<void> {
 
-    const favorites =
-      await readFavoritesFile();
-
-    if (
-      !favorites[
-        guestId
-      ]
-    ) {
-
-      favorites[
-        guestId
-      ] = [];
+    const db = await getDb()
+    try {
+      await db.run(
+        `INSERT INTO favorites (guestId , imdbID, Title , Year , Poster , Type) VALUES (?, ?, ?, ?, ?, ?)`,
+        [guestId, movie.imdbID, movie.Title, movie.Year, movie.Poster, movie.Type]
+      )
+    } catch (error: any) {
+      if (error.code === 'SQLITE_CONSTRAINT') {
+        throw new Error("Movie already in favorites");
+      }
+      throw error;
     }
-
-    const exists =
-      favorites[
-        guestId
-      ].some(
-        (
-          favorite
-        ) =>
-          favorite.imdbID ===
-          movie.imdbID
-      );
-
-    if (
-      exists
-    ) {
-
-      throw new Error(
-        "Movie already in favorites"
-      );
-    }
-
-    favorites[
-      guestId
-    ].push(movie);
-
-    await writeFavoritesFile(
-      favorites
-    );
   }
 
   async removeFavorite(
-  guestId: string,
-  imdbID: string
-): Promise<void> {
+    guestId: string,
+    imdbID: string
+  ): Promise<void> {
+    const db = await getDb()
 
-  const favorites =
-    await readFavoritesFile();
+    await db.run(
+      `DELETE FROM favorites WHERE guestId = ? AND imdbID = ?`,
+      [guestId , imdbID]
+    )
 
-  if (
-    !favorites[guestId]
-  ) {
-    return;
   }
-
-
-
-  favorites[guestId] =
-    favorites[
-      guestId
-    ].filter(
-      (movie) => {
-
-        const movieId =
-          String(
-            movie.imdbID
-          ).trim();
-
-        const targetId =
-          String(
-            imdbID
-          ).trim();
-
-        return (
-          movieId !==
-          targetId
-        );
-      }
-    );
-
-  await writeFavoritesFile(
-    favorites
-  );
-}
 }

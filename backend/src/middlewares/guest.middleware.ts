@@ -1,8 +1,6 @@
 import { Request , Response , NextFunction } from "express";
-import {z} from 'zod';
 import { HTTP_STATUS } from "../constants/http-status";
 
-const guestIdSchema = z.uuid()
 
 declare global{
     namespace Express{
@@ -13,15 +11,17 @@ declare global{
 }
 
 export const guestMiddleware = (req :Request ,res: Response ,next : NextFunction) => {
-    const guestId = req.headers['x-guest-id'];
+    let guestId = req.cookies['guestId']
 
-    const result = guestIdSchema.safeParse(guestId)
-
-    if(!result.success){
-        return res.status(HTTP_STATUS.BAD_REQUEST).json({success : false , message : "Valid guest ID is required"})
+    if(!guestId){
+        guestId = crypto.randomUUID()
+        res.cookie('guestId' , guestId ,{
+            httpOnly : true,
+            maxAge : 60*60*24*30,
+            sameSite: 'lax'
+        })
     }
-
-    req.guestId = result.data
+    req.guestId = guestId
     next()
 
 }

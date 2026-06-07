@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import routes from "./routes"
 import { apiLimiter } from "./middlewares/rate-limit.middleware"
+import cookieParser from "cookie-parser"
 import { notFoundMiddleware } from "./middlewares/not-found.middleware"
 import { errorMiddleware } from "./middlewares/error.middleware"
 import { MESSAGES } from "./constants/messages"
@@ -47,6 +48,8 @@ app.use(
       true
   })
 );
+
+app.use(cookieParser())
 
 app.use(express.json())
 
