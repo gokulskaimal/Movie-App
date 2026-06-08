@@ -269,7 +269,7 @@ async (
                         }
                         totalPages={
                             Math.ceil(
-                                totalResults / 10
+                                totalResults / 20
                             )
                         }
                         onPageChange={

@@ -60,36 +60,41 @@ function Pagination({
         }
 
         onClick={() =>
+          onPageChange(1)
+        }
+
+        style={{
+          padding: "12px 18px",
+          border: "none",
+          borderRadius: "14px",
+          background: "#e5e7eb",
+          cursor: currentPage === 1 ? "not-allowed" : "pointer",
+          opacity: currentPage === 1 ? 0.5 : 1,
+          fontWeight: "600"
+        }}
+      >
+        «
+      </button>
+
+      <button
+        disabled={
+          currentPage === 1
+        }
+
+        onClick={() =>
           onPageChange(
             currentPage - 1
           )
         }
 
         style={{
-          padding:
-            "12px 18px",
-
-          border:
-            "none",
-
-          borderRadius:
-            "14px",
-
-          background:
-            "#e5e7eb",
-
-          cursor:
-            currentPage === 1
-              ? "not-allowed"
-              : "pointer",
-
-          opacity:
-            currentPage === 1
-              ? 0.5
-              : 1,
-
-          fontWeight:
-            "600"
+          padding: "12px 18px",
+          border: "none",
+          borderRadius: "14px",
+          background: "#e5e7eb",
+          cursor: currentPage === 1 ? "not-allowed" : "pointer",
+          opacity: currentPage === 1 ? 0.5 : 1,
+          fontWeight: "600"
         }}
       >
         ← Prev
@@ -162,35 +167,41 @@ function Pagination({
         }
 
         style={{
-          padding:
-            "12px 18px",
-
-          border:
-            "none",
-
-          borderRadius:
-            "14px",
-
-          background:
-            "#e5e7eb",
-
-          cursor:
-            currentPage ===
-            totalPages
-              ? "not-allowed"
-              : "pointer",
-
-          opacity:
-            currentPage ===
-            totalPages
-              ? 0.5
-              : 1,
-
-          fontWeight:
-            "600"
+          padding: "12px 18px",
+          border: "none",
+          borderRadius: "14px",
+          background: "#e5e7eb",
+          cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+          opacity: currentPage === totalPages ? 0.5 : 1,
+          fontWeight: "600"
         }}
       >
         Next →
+      </button>
+
+      <button
+        disabled={
+          currentPage ===
+          totalPages
+        }
+
+        onClick={() =>
+          onPageChange(
+            totalPages
+          )
+        }
+
+        style={{
+          padding: "12px 18px",
+          border: "none",
+          borderRadius: "14px",
+          background: "#e5e7eb",
+          cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+          opacity: currentPage === totalPages ? 0.5 : 1,
+          fontWeight: "600"
+        }}
+      >
+        »
       </button>
     </div>
   );

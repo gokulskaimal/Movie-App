@@ -20,7 +20,7 @@ function Loader() {
       }}
     >
       {Array.from({
-        length: 8
+        length: 10
       }).map(
         (_, index) => (
           <div

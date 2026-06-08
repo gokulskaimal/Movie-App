@@ -1,5 +1,6 @@
 import {
-  useEffect
+  useEffect,
+  useState
 } from "react";
 
 import {
@@ -8,6 +9,9 @@ import {
 
 import MovieCard
 from "../components/MovieCard";
+
+import Pagination
+from "../components/Pagination";
 
 import Navbar
 from "../components/Navbar";
@@ -31,6 +35,9 @@ function Favorites() {
 
   const dispatch =
     useAppDispatch();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 10;
 
   const {
     favorites
@@ -71,6 +78,19 @@ function Favorites() {
         );
       }
     };
+
+  const totalPages = Math.ceil(favorites.length / ITEMS_PER_PAGE);
+  const currentFavorites = favorites.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  useEffect(() => {
+    // If user deletes the last item on the current page, go back a page
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [favorites.length, currentPage, totalPages]);
 
   return (
     <div
@@ -218,7 +238,7 @@ function Favorites() {
               "20px"
           }}
         >
-          {favorites.map(
+          {currentFavorites.map(
             (movie) => (
               <MovieCard
                 key={
@@ -240,6 +260,14 @@ function Favorites() {
             )
           )}
         </div>
+      )}
+
+      {favorites.length > 0 && totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       )}
     </div>
   );
