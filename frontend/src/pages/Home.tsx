@@ -74,7 +74,6 @@ function Home() {
         (state) =>
             state.favorites
     );
-    console.log(favorites)
 
     useEffect(() => {
         dispatch(
