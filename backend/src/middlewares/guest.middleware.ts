@@ -15,10 +15,12 @@ export const guestMiddleware = (req :Request ,res: Response ,next : NextFunction
 
     if(!guestId){
         guestId = crypto.randomUUID()
+        const isProduction = process.env.NODE_ENV === 'production';
         res.cookie('guestId' , guestId ,{
             httpOnly : true,
             maxAge : 60 * 60 * 24 * 30 * 1000, // 30 days in milliseconds
-            sameSite: 'lax'
+            sameSite: isProduction ? 'none' : 'lax',
+            secure: isProduction // required for 'none'
         })
     }
     req.guestId = guestId
