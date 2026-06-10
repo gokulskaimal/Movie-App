@@ -17,7 +17,7 @@ export const guestMiddleware = (req :Request ,res: Response ,next : NextFunction
         guestId = crypto.randomUUID()
         res.cookie('guestId' , guestId ,{
             httpOnly : true,
-            maxAge : 60*60*24*30,
+            maxAge : 60 * 60 * 24 * 30 * 1000, // 30 days in milliseconds
             sameSite: 'lax'
         })
     }

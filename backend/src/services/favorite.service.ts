@@ -1,7 +1,8 @@
 import { FavouriteMovieDTO } from "../dto/favorite-movie.dto";
 import { IFavoriteRepository } from "../repositories/interfaces/IFavoriteRepository";
+import { IFavoriteService } from "./interfaces/IFavoriteService";
 
-export class FavoriteService{
+export class FavoriteService implements IFavoriteService {
     constructor(private _favoriteRepo : IFavoriteRepository){}
 
     async getFavorites(guestId : string ){
