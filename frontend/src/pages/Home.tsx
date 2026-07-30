@@ -33,7 +33,8 @@ import Navbar
     from "../components/Navbar";
 
 import {
-    searchMovies
+    searchMovies,
+    clearMovies
 } from "../store/slices/movie.slice";
 
 import { addFavorite, removeFavorite, fetchFavorites } from "../store/slices/favorite.slice";
@@ -96,6 +97,8 @@ function Home() {
                     page: 1
                 })
             );
+        } else {
+            dispatch(clearMovies());
         }
 
     }, [

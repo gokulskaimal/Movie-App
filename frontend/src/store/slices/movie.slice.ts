@@ -33,6 +33,11 @@ const movieSlice = createSlice({
     reducers: {
         setPage: (state, action) => {
             state.currentPage = action.payload
+        },
+        clearMovies: (state) => {
+            state.movies = []
+            state.totalResults = 0
+            state.query = ''
         }
     },
     extraReducers: (builder) => {
@@ -54,5 +59,5 @@ const movieSlice = createSlice({
     }
 })
 
-export const {setPage} = movieSlice.actions
+export const {setPage, clearMovies} = movieSlice.actions
 export default movieSlice.reducer
